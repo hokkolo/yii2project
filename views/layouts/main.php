@@ -39,7 +39,7 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-	    ['label' => 'Store', 'url' => ['/site/about']],
+	    ['label' => 'Store', 'url' => ['/site/store']],
 	    ['label' => 'MP3s', 'url' => ['/site/mpe']],
             ['label' => 'Enquiries', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
@@ -70,7 +70,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; My Music Store <?= date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>

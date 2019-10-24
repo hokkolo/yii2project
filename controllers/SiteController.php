@@ -121,8 +121,28 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionAbout()
+    public function actionStore()
     {
-        return $this->render('about');
+        return $this->render('store');
     }
+
+    /**
+     * Displays mpe page.
+     *
+     * @return string
+     */
+    public function actionMpe()
+    {
+	    return $this->render('mpe');
+    }
+    /**
+     * Displays artist page.
+     *
+     * @return string
+     */
+    public function actionArtist()
+    {
+	    return $this->render('artist');
+    }
+
 }
