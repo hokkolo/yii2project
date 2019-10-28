@@ -40,6 +40,7 @@ AppAsset::register($this);
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
 	    ['label' => 'Store', 'url' => ['/site/store']],
+	    ['label' => 'Artist', 'url' => ['/site/artist']],
 	    ['label' => 'MP3s', 'url' => ['/site/mpe']],
             ['label' => 'Enquiries', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
@@ -72,7 +73,6 @@ AppAsset::register($this);
     <div class="container">
         <p class="pull-left">&copy; My Music Store <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
 

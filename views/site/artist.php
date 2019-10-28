@@ -4,11 +4,11 @@
 
 use yii\helpers\Html;
 
-$this->title = 'MP3s';
+$this->title = 'Artist';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-	You can list to the Musics here.
+	List musics based on your favourite Artist
     </p>
