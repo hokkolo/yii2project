@@ -1,21 +1,44 @@
 <?php
 namespace app\models;
 use Yii;
+use yii\db\ActiveRecord;
+use yii\web\IdentityInterface;
 
 
+class BackendUser extends ActiveRecord implements IdentityInterface
+{ 
+/*        public function rules()
+*	{ 
+*		return [ 
+*			[['username','password'], 'string','max' => 30],
+*			[['authkey'], 'string','max' => 15],
+*			[['username'], 'unique'],
+*			[['authkey'], 'unique']
+*		 
+*		];
+*	}
+*
+*	public function attributeLables()
+*	{
+*		return[
+*			'id' => Yii::t('app', 'ID'),
+*			'username' => Yii::t('app', 'Username'),
+*			'password' => Yii::t('app', 'Password'),
+*			'authkey' => Yii::t('app', 'AuthKey'),
+*		];
+*	}
+ */
 
-class BackendUser extends yii\db\ActiveRecord implements yii\web\IdentityInterface
-{
 	 public static function tableName()
         {
-                return "backendUser";
+                return "login";
         }
 
 
 	public static function findIdentity($id){
 		return static::findOne($id);
 	}
- 
+
 	public static function findIdentityByAccessToken($token, $type = null){
 		throw new NotSupportedException();//I don't implement this method because I don't have any access token column in my database
 	}
@@ -25,12 +48,12 @@ class BackendUser extends yii\db\ActiveRecord implements yii\web\IdentityInterfa
 	}
  
 	public function getAuthKey(){
-		return $this->authKey;//Here I return a value of my authKey column
+		return $this->authkey;//Here I return a value of my authKey column
 	}
  
 	public function validateAuthKey($authKey){
-		return $this->authKey === $authKey;
-	}
+		return $this->authkey === $authKey;
+	} 
 	public static function findByUsername($username){
 		return self::findOne(['username'=>$username]);
 	}
