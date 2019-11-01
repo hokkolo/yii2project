@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Stores;
 
 class SiteController extends Controller
 {
@@ -121,11 +122,11 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionStore()
+/*    public function actionStore()
     {
         return $this->render('store');
     }
-
+ */
     /**
      * Displays mpe page.
      *
@@ -144,5 +145,19 @@ class SiteController extends Controller
     {
 	    return $this->render('artist');
     }
-    
+
+    public function actionStores()
+   {
+       $model = new Stores();
+       if ($model->load(Yii::$app->request->post()) && $model->save()) {
+           Yii::$app->session->setFlash('contactFormSubmitted');
+           return $this->render('stores', [
+               'model' => $model,
+           ]);
+       } else {
+           return $this->render('stores', [
+               'model' => $model,
+           ]);
+       }
+   }
 }
