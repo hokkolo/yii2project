@@ -10,6 +10,9 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Stores;
+use app\models\Posts;
+use app\models\Createuser;
+use app\models\Listusers;
 
 class SiteController extends Controller
 {
@@ -133,8 +136,8 @@ class SiteController extends Controller
      * @return string
      */
     public function actionMpe()
-    {
-	    return $this->render('mpe');
+    {	  $posts = Posts::find()->all();
+	   return $this->render('mpe',['posts' => $posts]);
     }
     /**
      * Displays artist page.
@@ -159,5 +162,30 @@ class SiteController extends Controller
                'model' => $model,
            ]);
        }
-   }
+    }
+
+    public function actionCreateuser()
+   {
+       $model = new Createuser();
+       if ($model->load(Yii::$app->request->post()) && $model->save()) {
+           Yii::$app->session->setFlash('contactFormSubmitted');
+           return $this->render('createuser', [
+               'model' => $model,
+           ]);
+       } else {
+           return $this->render('createuser', [
+               'model' => $model,
+           ]);
+       }
+
+
+    }
+
+	public function actionListusers()
+	{
+		 $users = Listusers::find()->all();
+         return $this->render('createuser',['users' => $users]);
+
+	}
+
 }

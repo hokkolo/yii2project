@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= $form->field($model, 'remark')->textInput() ?>
 
                     <div class="form-group">
-                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
+                        <?= Html::submitButton('Add Music', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
                     </div>
 
                 <?php ActiveForm::end(); ?>

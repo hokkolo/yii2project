@@ -42,7 +42,8 @@ AppAsset::register($this);
 	    ['label' => 'Store', 'url' => ['/site/stores'], 'visible' => !Yii::$app->user->isGuest],
 	    ['label' => 'Artist', 'url' => ['/site/artist']],
 	    ['label' => 'MP3s', 'url' => ['/site/mpe']],
-            ['label' => 'Enquiries', 'url' => ['/site/contact']],
+	    ['label' => 'Enquiries', 'url' => ['/site/contact']],
+	    ['label' => 'Add User', 'url' => ['/site/createuser'], 'visible' => !Yii::$app->user->isGuest],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
