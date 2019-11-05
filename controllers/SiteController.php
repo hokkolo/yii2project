@@ -184,8 +184,18 @@ class SiteController extends Controller
 	public function actionListusers()
 	{
 		 $users = Listusers::find()->all();
-         return $this->render('createuser',['users' => $users]);
+              return $this->render('listusers',['users' => $users]);
 
 	}
+
+
+	public function actionDelete($id)
+	{ $user = Listusers::findOne($id)->delete();
+	  if ($user) {
+		  Yii::$app->getSession()->setFlash('message', 'User deleted');
+		  return $this->redirect(['createuser']);
+	  }
+	}
+
 
 }

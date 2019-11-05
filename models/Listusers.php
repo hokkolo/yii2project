@@ -1,28 +1,23 @@
-
 <?php
-
 namespace app\models;
-
 use Yii;
-use yii\base\Model;
 use yii\db\ActiveRecord;
 
-
-class Listusers extends ActiveRecords {
-        public $fname;
-        public $uname;
-	public function rules()
+class Listusers extends ActiveRecord {
+	public $uid;
+	public $fname;
+	public $uname;
 
 	public static function tablename()
    {
        return 'login';
    }
-
+	 public function rules()
    {
        return [
-               [['firstname','username'], 'required']
-                      ];
+               [['id','firstname','username'], 'required']
+              ];
    }
 
 }
-?>
+

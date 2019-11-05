@@ -12,6 +12,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-contact">
 
+<div class="div1" style="text-align:right; float:right; width:50%;">
+<?= Html::a('List Users', ['/site/listusers'], ['class'=>'btn btn-primary']) ?>
+</div>
+
  <h1><?= Html::encode($this->title) ?></h1>
 
     <?php  if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
