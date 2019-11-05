@@ -11,10 +11,12 @@ $this->title = 'Create User';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-contact">
-
+<?php if( ! Yii::$app->user->isGuest ): ?>
 <div class="div1" style="text-align:right; float:right; width:50%;">
 <?= Html::a('List Users', ['/site/listusers'], ['class'=>'btn btn-primary']) ?>
 </div>
+<?php endif ?>
+
 
  <h1><?= Html::encode($this->title) ?></h1>
 

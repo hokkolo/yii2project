@@ -15,7 +15,13 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
 <div class="site-index">
-	
+
+<?php if( ! Yii::$app->user->isGuest ): ?>
+
+<div class="div1" style="text-align:right; float:right; width:50%;">
+<?= Html::a('Add Music', ['/site/stores'], ['class'=>'btn btn-primary']) ?>
+</div>
+<?php endif ?>	
 
   <div class="body-content">
 	<div class="row">
@@ -35,6 +41,9 @@ $this->params['breadcrumbs'][] = $this->title;
 		 <td> <?php echo $post->songname;?> </td>
 		 <td> <?php echo $post->artist;?> </td>
 		 <td> <?php echo $post->remark;?> </td>
+			<td> <?php if( ! Yii::$app->user->isGuest ): ?>
+			 <span><?=Html::a('Delete'/*, ['delete', 'id' => $songs->is], ['class' => 'label label-danger']) */) ?></span>
+		<?php endif ?>	</td>
 		  </tr>
 			<?php endforeach; ?>
 		  <?php else: ?>

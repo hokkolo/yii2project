@@ -198,4 +198,13 @@ class SiteController extends Controller
 	}
 
 
+	public function actionDelmpe($is) {
+	 $songs = Stores::findOne($is)->delete();
+	  if ($songs) {
+                  Yii::$app->getSession()->setFlash('message', 'Song deleted');
+                  return $this->redirect(['mpe']);
+	  } /* echo $id; */
+
+	}
+
 }

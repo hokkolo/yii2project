@@ -39,7 +39,7 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-	    ['label' => 'Store', 'url' => ['/site/stores'], 'visible' => !Yii::$app->user->isGuest],
+	    /*	    ['label' => 'Store', 'url' => ['/site/stores'], 'visible' => !Yii::$app->user->isGuest], */
 	    ['label' => 'Artist', 'url' => ['/site/artist']],
 	    ['label' => 'MP3s', 'url' => ['/site/mpe']],
 	    ['label' => 'Enquiries', 'url' => ['/site/contact']],
