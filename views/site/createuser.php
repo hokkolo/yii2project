@@ -6,12 +6,14 @@ use yii\helpers\Html;
 use app\models\Createuser;
 use app\models\Listusers;
 use yii\bootstrap\ActiveForm;
+use yii\ibootstrap\ActiveField;
+use yii\helpers\ArrayHelpers;
 
 $this->title = 'Create User';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-contact">
-<?php if( ! Yii::$app->user->isGuest ): ?>
+<?php if( Yii::$app->user->identity->category == 'admin' ): ?>
 <div class="div1" style="text-align:right; float:right; width:50%;">
 <?= Html::a('List Users', ['/site/listusers'], ['class'=>'btn btn-primary']) ?>
 </div>
@@ -39,8 +41,12 @@ $this->params['breadcrumbs'][] = $this->title;
 		    <?= $form->field($model, 'password')->passwordInput() ?>
 		    <?= $form->field($model, 'authkey')->textInput() ?>
 
- 		    <?= $form->field($model, 'accesstoken')->textInput() ?>
-
+		    <?= $form->field($model, 'accesstoken')->textInput() ?>
+		    <?= $form->field($model, 'category')->dropDownList(
+          		  ['admin' => 'Administrator', 
+			   'customer' => 'Customer', 
+			   'others' => 'Others']
+   				 ); ?>
                     <div class="form-group">
                         <?= Html::submitButton('Add User', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
                     </div>

@@ -7,7 +7,9 @@ use yii\db\ActiveRecord;
 class Stores extends ActiveRecord {
 public $mid;	
 public $mname;
+public $fname;
 public $martist;
+public $mprice;
 public $mremark;
 
        /**
@@ -23,10 +25,12 @@ public $mremark;
    public function rules()
    {
        return [
-	   [['songname','artist','remark'], 'required'],
+	   [['songname','film','artist','price','remark'], 'required'],
 	   [['id'],'integer','max' => 30],
-           [['songname'],'string', 'max' => 50],
-           [['artist'], 'string', 'max' => 50],
+	   [['songname'],'string', 'max' => 50],
+	   [['film'],'string', 'max' => 50],
+	   [['artist'], 'string', 'max' => 50],
+	   [['price'],'integer', 'max' => 30],
            [['remark'], 'string', 'max' => 255],
 
        ];

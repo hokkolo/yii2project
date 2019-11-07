@@ -28,7 +28,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <?= $form->field($model, 'songname')->textInput(['autofocus' => true]) ?>
 
-                    <?= $form->field($model, 'artist')->textInput() ?>
+		    <?= $form->field($model, 'film')->textInput() ?>
+
+
+		     <?= $form->field($model, 'artist')->textInput() ?>
+
+		      <?= $form->field($model, 'price')->textInput() ?>
 
                     <?= $form->field($model, 'remark')->textInput() ?>
 

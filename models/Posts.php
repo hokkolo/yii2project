@@ -4,8 +4,11 @@ use Yii;
 use yii\db\ActiveRecord;
 
 class Posts extends ActiveRecord {
+	private $id;
 	private $songname;
+	private $film;
 	private $artist;
+	private $price;
 	private $remark;
 
 
@@ -17,7 +20,7 @@ class Posts extends ActiveRecord {
 
 	public function rules(){
 		return[
-		[['songname','artist','remark'],'required']
+		[['id','songname','film','artist','price','remark'],'required']
 		];
 	}
 }

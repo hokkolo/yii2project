@@ -4,6 +4,7 @@
 
 use yii\helpers\Html;
 use app\models\Posts;
+//use app\model\Stores;
 
 $this->title = 'MP3s';
 $this->params['breadcrumbs'][] = $this->title;
@@ -29,7 +30,9 @@ $this->params['breadcrumbs'][] = $this->title;
 		<thead>
 		 <tr>
 		   <th scope="col">Music Name</th>
+		   <th scope="col">Film</th>
 		   <th scope="col">Artist</th>
+		   <th scope="col">Price ($)</th>
 		   <th scope="col">Remark</th>
 		 </tr>
 		</thead>
@@ -39,10 +42,12 @@ $this->params['breadcrumbs'][] = $this->title;
 		 <tr class="table-active">
 <?php /*		 <th scope="row"><?php echo $post->id;?></th> */ ?>
 		 <td> <?php echo $post->songname;?> </td>
+		 <td> <?php echo $post->film; ?> </td>
 		 <td> <?php echo $post->artist;?> </td>
+		 <td> <?php echo $post->price; ?> </td>
 		 <td> <?php echo $post->remark;?> </td>
-			<td> <?php if( ! Yii::$app->user->isGuest ): ?>
-			 <span><?=Html::a('Delete'/*, ['delete', 'id' => $songs->is], ['class' => 'label label-danger']) */) ?></span>
+			<td> <?php if( Yii::$app->user->identity->category == 'admin' ): ?>
+			<span><?=Html::a('Remove', ['remove', 'id' => $post->id], ['class' => 'label label-danger']) ?></span>
 		<?php endif ?>	</td>
 		  </tr>
 			<?php endforeach; ?>
