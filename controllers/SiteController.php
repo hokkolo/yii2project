@@ -146,7 +146,8 @@ class SiteController extends Controller
      */
     public function actionArtist()
     {
-	    return $this->render('artist');
+	    $posts = Posts::find()->all();
+            return $this->render('artist', ['posts' => $posts]);
     }
 
     public function actionStores()
@@ -205,8 +206,13 @@ class SiteController extends Controller
 		  Yii::$app->getSession()->setFlash('message', 'User deleted');
 		  return $this->redirect(['createuser']);
 	  }
-	} 
+	}
 
+	public function actionView($id)
+	{
+		$post = Posts::findOne($id);
+            	return $this->render('view', ['post' => $post]);
+	}
 
 
 }

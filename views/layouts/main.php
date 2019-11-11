@@ -11,6 +11,16 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use app\models\Posts;
 
+$user=false;
+
+if (  ! Yii::$app->user->isGuest): {
+        if ( Yii::$app->user->identity->category == 'admin' ):
+                $user=true;
+endif;
+}
+endif;
+
+
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -44,7 +54,7 @@ AppAsset::register($this);
 	    ['label' => 'Artist', 'url' => ['/site/artist']],
 	    ['label' => 'MP3s', 'url' => ['/site/mpe']],
 	    ['label' => 'Enquiries', 'url' => ['/site/contact']],
-	    ['label' => 'Add User', 'url' => ['/site/createuser'], 'visible' => !Yii::$app->user->isGuest],
+	    ['label' => 'Add User', 'url' => ['/site/createuser'], 'visible' => $user == 'true'],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (

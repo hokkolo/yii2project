@@ -29,8 +29,9 @@ CREATE TABLE `login` (
   `password` varchar(50) NOT NULL,
   `authkey` varchar(50) NOT NULL,
   `accesstoken` varchar(50) NOT NULL,
+  `category` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +40,7 @@ CREATE TABLE `login` (
 
 LOCK TABLES `login` WRITE;
 /*!40000 ALTER TABLE `login` DISABLE KEYS */;
-INSERT INTO `login` VALUES (1,'yiiuser','yiitwo','yiitwo','100yiitwo','100yiitwo'),(2,'admin user','admin','admin','100admin','100admin'),(3,'Gautham','gautham','gautham','1000gautham','1000gautham'),(4,'qwerty','qwerty','qwerty','qazwsx','qazwsx');
+INSERT INTO `login` VALUES (1,'Gautham','gautham','gautham','100gautham','100gautham','admin'),(10,'demo','demo','demo','100demo','100demo','customer');
 /*!40000 ALTER TABLE `login` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -53,10 +54,12 @@ DROP TABLE IF EXISTS `store`;
 CREATE TABLE `store` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `songname` varchar(30) NOT NULL,
+  `film` varchar(50) NOT NULL,
   `artist` varchar(30) NOT NULL,
+  `price` int(255) NOT NULL,
   `remark` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,7 +68,7 @@ CREATE TABLE `store` (
 
 LOCK TABLES `store` WRITE;
 /*!40000 ALTER TABLE `store` DISABLE KEYS */;
-INSERT INTO `store` VALUES (5,'abcd','mallu','good song'),(6,'ting ting','New guyy','awsome'),(7,'fghffh','dfghsfdhfdsh','fghfdghfdgh'),(8,'fdhfdjhng','jhfghjgfjghj','fghjfghjghfj');
+INSERT INTO `store` VALUES (14,'samjawan','humti sharma','arjith',20,'Classic'),(16,'efefsdf','sdfsdf','sadfsadf',20,'asdfasdf'),(17,'daaar hua','jannat 2','new guy',30,'good');
 /*!40000 ALTER TABLE `store` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -78,4 +81,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-05  3:48:56
+-- Dump completed on 2019-11-11 10:51:48

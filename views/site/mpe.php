@@ -5,6 +5,16 @@
 use yii\helpers\Html;
 use app\models\Posts;
 //use app\model\Stores;
+$user=false;
+
+if (  ! Yii::$app->user->isGuest): { 
+	if ( Yii::$app->user->identity->category == 'admin' ): 
+		$user=true; 
+endif;
+}
+endif;
+				
+
 
 $this->title = 'MP3s';
 $this->params['breadcrumbs'][] = $this->title;
@@ -46,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		 <td> <?php echo $post->artist;?> </td>
 		 <td> <?php echo $post->price; ?> </td>
 		 <td> <?php echo $post->remark;?> </td>
-			<td> <?php if( Yii::$app->user->identity->category == 'admin' ): ?>
+			<td> <?php if( $user ): ?>
 			<span><?=Html::a('Remove', ['remove', 'id' => $post->id], ['class' => 'label label-danger']) ?></span>
 		<?php endif ?>	</td>
 		  </tr>
