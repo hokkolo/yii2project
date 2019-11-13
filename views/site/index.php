@@ -11,7 +11,7 @@ $this->title = 'My Music Store';
 
         <p class="lead">Explore the taste of Music</p>
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Explore Music</a></p>
     </div>
 
     <div class="body-content">

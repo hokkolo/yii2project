@@ -13,6 +13,7 @@ use app\models\Stores;
 use app\models\Posts;
 use app\models\Createuser;
 use app\models\Listusers;
+use app\models\Addstock;
 
 class SiteController extends Controller
 {
@@ -213,6 +214,16 @@ class SiteController extends Controller
 		$post = Posts::findOne($id);
             	return $this->render('view', ['post' => $post]);
 	}
+	 public function actionEmplist()
+	    {
+       		 return $this->render('emplist');
+	    }
 
+	 public function actionInventory()
+	 { 
+		  $posts = Addstock::find()->all();
+              return $this->render('inventory',['posts' => $posts]);
+            }
+	
 
 }

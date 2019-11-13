@@ -44,7 +44,9 @@ $this->params['breadcrumbs'][] = $this->title;
 		    <?= $form->field($model, 'accesstoken')->textInput() ?>
 		    <?= $form->field($model, 'category')->dropDownList(
           		  ['admin' => 'Administrator', 
-			   'customer' => 'Customer', 
+			   'customer' => 'Customer',
+			   'supervisor' => 'Supervisor',
+			   'employee' => 'Employee',
 			   'others' => 'Others']
    				 ); ?>
                     <div class="form-group">

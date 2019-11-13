@@ -11,11 +11,14 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use app\models\Posts;
 
-$user=false;
-
+$user=[];
 if (  ! Yii::$app->user->isGuest): {
         if ( Yii::$app->user->identity->category == 'admin' ):
-                $user=true;
+		$user = 'admin';
+	elseif ( Yii::$app->user->identity->category == 'supervisor' ):
+		$user = 'supervisor';
+	elseif ( Yii::$app->user->identity->category == 'employee' ):
+                $user = 'employee';	
 endif;
 }
 endif;
@@ -49,12 +52,17 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-	    /*	    ['label' => 'Store', 'url' => ['/site/stores'], 'visible' => !Yii::$app->user->isGuest], */
-	    ['label' => 'Artist', 'url' => ['/site/artist']],
-	    ['label' => 'MP3s', 'url' => ['/site/mpe']],
-	    ['label' => 'Enquiries', 'url' => ['/site/contact']],
-	    ['label' => 'Add User', 'url' => ['/site/createuser'], 'visible' => $user == 'true'],
+            ['label' => 'Home', 'url' => ['/site/index'],'visible' => $user != 'supervisor'],
+	    ['label' => 'Artist', 'url' => ['/site/artist'],'visible' => $user != 'supervisor'],
+	    ['label' => 'MP3s', 'url' => ['/site/mpe'],'visible' => $user != 'supervisor'],
+	    ['label' => 'Enquiries', 'url' => ['/site/contact'],'visible' => $user != 'supervisor'],
+	    ['label' => 'Add User', 'url' => ['/site/createuser'], 'visible' => $user == 'admin'],
+	    ['label' => 'Dashboard', 'url' => ['/site/dashboard'], 'visible' => $user == 'supervisor'],
+	    ['label' => 'Employees', 'url' => ['/site/emplist'], 'visible' => $user == 'supervisor'],
+	    ['label' => 'Inventory', 'url' => ['/site/inventory'], 'visible' => $user == 'supervisor'],
+	    ['label' => 'Report', 'url' => ['/site/report'], 'visible' => $user == 'supervisor'],
+	    ['label' => 'Buy List', 'url' => ['/site/buylist'], 'visible' => $user == 'supervisor'],
+
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
