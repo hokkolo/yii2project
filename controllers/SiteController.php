@@ -14,6 +14,7 @@ use app\models\Posts;
 use app\models\Createuser;
 use app\models\Listusers;
 use app\models\Addstock;
+use app\models\Additem;
 
 class SiteController extends Controller
 {
@@ -224,6 +225,30 @@ class SiteController extends Controller
 		  $posts = Addstock::find()->all();
               return $this->render('inventory',['posts' => $posts]);
             }
-	
+
+
+	public function actionAddstock()
+	{ $model = new Additem();
+       if ($model->load(Yii::$app->request->post()) && $model->save()) {
+           Yii::$app->session->setFlash('contactFormSubmitted');
+           return $this->render('addstock', [
+               'model' => $model,
+           ]);
+       } else {
+           return $this->render('addstock', [
+               'model' => $model,
+           ]);
+       }
+	}	
+
+
+	public function actionDelete_item($id)
+        { $posts = Addstock::findOne($id)->delete();
+          if ($posts) {
+                  Yii::$app->getSession()->setFlash('message', 'Item deleted');
+                  return $this->redirect(['inventory']);
+          }
+        }
+
 
 }

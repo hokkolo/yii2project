@@ -4,11 +4,11 @@ use Yii;
 use yii\db\ActiveRecord;
 
 class Addstock extends ActiveRecord {
-	public $id;
-	public $product;
-	public $category;
-	public $price;
-	public $quantity;
+	public $mid;
+	public $mproduct;
+	public $mcategory;
+	public $mprice;
+	public $mquantity;
 
 	public static function tablename()
 	{ return 'inventory';
