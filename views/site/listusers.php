@@ -20,7 +20,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 <thead>
                  <tr>
                    <th scope="col">First name</th>
-                   <th scope="col">Username</th>
+		   <th scope="col">Username</th>
+		   <th scope="col">Category</th>
+		   <th scope="col">Action</th>
                  </tr>
                 </thead>
                 <tbody>
@@ -28,7 +30,8 @@ $this->params['breadcrumbs'][] = $this->title;
                    <?php foreach($users as $post): ?>
                  <tr class="table-active">
                  <td> <?php echo $post->firstname;?> </td>
-                 <td> <?php echo $post->username;?> </td>
+		 <td> <?php echo $post->username;?> </td>
+	        <td> <?php echo $post->category;?> </td>
                  <td>
                         <span><?=Html::a('Delete', ['delete', 'id' => $post->id], ['class' => 'label label-danger']) ?></span>
                  </td>

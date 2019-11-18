@@ -52,16 +52,16 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index'],'visible' => $user != 'supervisor'],
-	    ['label' => 'Artist', 'url' => ['/site/artist'],'visible' => $user != 'supervisor'],
-	    ['label' => 'MP3s', 'url' => ['/site/mpe'],'visible' => $user != 'supervisor'],
-	    ['label' => 'Enquiries', 'url' => ['/site/contact'],'visible' => $user != 'supervisor'],
+            ['label' => 'Home', 'url' => ['/site/index'],'visible' => $user != 'supervisor','visible' => $user != 'employee'],
+	    ['label' => 'Artist', 'url' => ['/site/artist'],'visible' => $user != 'supervisor','visible' => $user != 'employee'],
+	    ['label' => 'MP3s', 'url' => ['/site/mpe'],'visible' => $user != 'supervisor','visible' => $user != 'employee'],
+	    ['label' => 'Enquiries', 'url' => ['/site/contact'],'visible' => $user != 'supervisor','visible' => $user != 'employee'],
 	    ['label' => 'Add User', 'url' => ['/site/createuser'], 'visible' => $user == 'admin'],
-	    ['label' => 'Dashboard', 'url' => ['/site/dashboard'], 'visible' => $user == 'supervisor'],
+	    ['label' => 'Dashboard', 'url' => ['/site/dashboard'], 'visible' => $user == 'supervisor','visible' => $user == 'employee'],
 	    ['label' => 'Employees', 'url' => ['/site/emplist'], 'visible' => $user == 'supervisor'],
-	    ['label' => 'Inventory', 'url' => ['/site/inventory'], 'visible' => $user == 'supervisor'],
+	    ['label' => 'Inventory', 'url' => ['/site/inventory'], 'visible' => $user == 'supervisor','visible' => $user == 'employee'],
 	    ['label' => 'Report', 'url' => ['/site/report'], 'visible' => $user == 'supervisor'],
-	    ['label' => 'Buy List', 'url' => ['/site/buylist'], 'visible' => $user == 'supervisor'],
+	    ['label' => 'BIlling', 'url' => ['/site/billing'],'visible' => $user == 'employee'],
 
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]

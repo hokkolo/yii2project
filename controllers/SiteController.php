@@ -216,8 +216,9 @@ class SiteController extends Controller
             	return $this->render('view', ['post' => $post]);
 	}
 	 public function actionEmplist()
-	    {
-       		 return $this->render('emplist');
+	 {
+		 $users = Listusers::find()->all();
+              return $this->render('emplist',['users' => $users]);
 	    }
 
 	 public function actionInventory()
@@ -250,5 +251,45 @@ class SiteController extends Controller
           }
         }
 
+	
+	public function actionEdit($id)
+        {
+		$model = Additem::findOne($id);
+		if($model->load(yii::$app->request->post()) && $model->save() ){
+			Yii::$app->getSession()->setFlash('message','Record Updated');
+			return $this->redirect(['inventory', 'id' => $model->id ]);
+		}
+		else{	
+			return $this->render('editpost',['model' => $model ]);
+		}
+	}
+
+
+	public function actionAddemployee()
+	{ 
+		$model = new Createuser();
+      		 if ($model->load(Yii::$app->request->post()) && $model->save()) {
+          		 Yii::$app->session->setFlash('message');
+           			return $this->render('addemployee', [
+               			'model' => $model,
+           ]);
+       } else {
+           return $this->render('addemployee', [
+               'model' => $model,
+           ]);
+       }
+	}
+
+	public function actionDelete_emp($id)
+        { $posts = Listusers::findOne($id)->delete();
+          if ($posts) {
+                  Yii::$app->getSession()->setFlash('message', 'Item deleted');
+                  return $this->redirect(['emplist']);
+          }
+        }
+	
+	public function actionDashboard()
+	{ return $this->render('dashboard');
+	}
 
 }
