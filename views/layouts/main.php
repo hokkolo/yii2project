@@ -18,7 +18,9 @@ if (  ! Yii::$app->user->isGuest): {
 	elseif ( Yii::$app->user->identity->category == 'supervisor' ):
 		$user = 'supervisor';
 	elseif ( Yii::$app->user->identity->category == 'employee' ):
-                $user = 'employee';	
+		$user = 'employee';	
+	elseif (Yii::$app->user->identity->category == 'customer'):
+		$user = 'customer';
 endif;
 }
 endif;
@@ -55,13 +57,17 @@ AppAsset::register($this);
             ['label' => 'Home', 'url' => ['/site/index'],'visible' => $user != 'supervisor','visible' => $user != 'employee'],
 	    ['label' => 'Artist', 'url' => ['/site/artist'],'visible' => $user != 'supervisor','visible' => $user != 'employee'],
 	    ['label' => 'MP3s', 'url' => ['/site/mpe'],'visible' => $user != 'supervisor','visible' => $user != 'employee'],
-	    ['label' => 'Enquiries', 'url' => ['/site/contact'],'visible' => $user != 'supervisor','visible' => $user != 'employee'],
+	    ['label' => 'Enquiries', 'url' => ['/site/contact'],'visible' => Yii::$app->user->isGuest],
 	    ['label' => 'Add User', 'url' => ['/site/createuser'], 'visible' => $user == 'admin'],
 	    ['label' => 'Dashboard', 'url' => ['/site/dashboard'], 'visible' => $user == 'supervisor','visible' => $user == 'employee'],
 	    ['label' => 'Employees', 'url' => ['/site/emplist'], 'visible' => $user == 'supervisor'],
 	    ['label' => 'Inventory', 'url' => ['/site/inventory'], 'visible' => $user == 'supervisor','visible' => $user == 'employee'],
 	    ['label' => 'Report', 'url' => ['/site/report'], 'visible' => $user == 'supervisor'],
-	    ['label' => 'BIlling', 'url' => ['/site/billing'],'visible' => $user == 'employee'],
+	    ['label' => 'Billing', 'url' => ['/site/billing'],'visible' => $user == 'employee'],
+
+	    ['label' => 'Store', 'url' => ['/site/custstore'],'visible' => $user == 'customer'],
+	    ['label' => 'Cart', 'url' => ['/site/billing'],'visible' => $user == 'customer'],
+	    ['label' => 'History', 'url' => ['/site/billing'],'visible' => $user == 'customer'],
 
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]

@@ -15,7 +15,7 @@ use app\models\Createuser;
 use app\models\Listusers;
 use app\models\Addstock;
 use app\models\Additem;
-
+use app\models\Cartadd;
 class SiteController extends Controller
 {
     /**
@@ -291,5 +291,39 @@ class SiteController extends Controller
 	public function actionDashboard()
 	{ return $this->render('dashboard');
 	}
+
+	public function actionCuststore()
+	{ $posts = Addstock::find()->all();
+          return $this->render('custstore',['posts' => $posts]);
+	}
+
+	public function actionCartadd($id)
+	{
+	  $post = Additem::findOne($id);
+	  $newpost = new Cartadd();
+	  if ($newpost->load(Yii::$app->request->post()) && $newpost->save()) {
+                         Yii::$app->session->setFlash('message');
+                                return $this->render('custstore', [
+                                'newpost' => $newpost,
+           ]);
+       } else {
+           return $this->render('custstore', [
+               'newpost' => $newpost,
+           ]);
+       }
+	}
+
+	
+	public function actionBuynow($id)
+        {
+                $model = Additem::findOne($id);
+                if($model->load(yii::$app->request->post()) ){
+                        return $this->redirect(['custstore', 'id' => $model->id ]);
+                }
+                else{
+                        return $this->render('buylist',['model' => $model ]);
+                }
+        }
+
 
 }
