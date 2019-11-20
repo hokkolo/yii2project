@@ -299,18 +299,34 @@ class SiteController extends Controller
 
 	public function actionCartadd($id)
 	{
-	  $post = Additem::findOne($id);
-	  $newpost = new Cartadd();
-	  if ($newpost->load(Yii::$app->request->post()) && $newpost->save()) {
-                         Yii::$app->session->setFlash('message');
-                                return $this->render('custstore', [
-                                'newpost' => $newpost,
-           ]);
-       } else {
-           return $this->render('custstore', [
-               'newpost' => $newpost,
-           ]);
-       }
+		$product = Additem::find()
+			->select('product')
+			->where(['id' => $id])
+			->one();
+		$pric =  Additem::find()
+                        ->select('price')
+                        ->where(['id' => $id])
+                        ->one();
+
+		$user = Yii::$app->user->identity->username;		
+	//	echo $post->product;
+	//	echo $pric->price;
+	//	echo $user;
+
+		$connection = Yii::$app->getDb();
+	//	if ( $connection)
+	//	{	echo "db connection success";}
+		$command= Yii::$app->db->createCommand(
+        "INSERT INTO cart 
+        (`product`,`price`,`user`)
+        VALUES 
+        (:product,:price,:user)");
+$command->bindValue(':product', $product);
+$command->bindValue(':price', $pric);
+$command->bindValue(':user', $user);
+$sql_result = $command->execute();
+		if ($command)
+			 return $this->render('success');
 	}
 
 	
@@ -325,5 +341,8 @@ class SiteController extends Controller
                 }
         }
 
-
+	
+	public function actionSuccess()
+        { return $this->render('success');
+        }
 }
