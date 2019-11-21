@@ -16,6 +16,8 @@ use app\models\Listusers;
 use app\models\Addstock;
 use app\models\Additem;
 use app\models\Cartadd;
+use app\models\Cartlist;
+
 class SiteController extends Controller
 {
     /**
@@ -309,24 +311,14 @@ class SiteController extends Controller
                         ->one();
 
 		$user = Yii::$app->user->identity->username;		
-	//	echo $post->product;
-	//	echo $pric->price;
-	//	echo $user;
-
 		$connection = Yii::$app->getDb();
-	//	if ( $connection)
-	//	{	echo "db connection success";}
-		$command= Yii::$app->db->createCommand(
-        "INSERT INTO cart 
-        (`product`,`price`,`user`)
-        VALUES 
-        (:product,:price,:user)");
-$command->bindValue(':product', $product);
-$command->bindValue(':price', $pric);
-$command->bindValue(':user', $user);
-$sql_result = $command->execute();
-		if ($command)
-			 return $this->render('success');
+		$result = Yii::$app->db->createCommand()->insert('cart', [
+		    'product' => $product->product, 
+		    'price' => $pric->price,
+		    'user' => $user
+			])->execute();
+		if ($result)
+			 return $this->redirect(['custstore']);
 	}
 
 	
@@ -344,5 +336,23 @@ $sql_result = $command->execute();
 	
 	public function actionSuccess()
         { return $this->render('success');
-        }
+	}
+	
+
+	public function actionCart()
+	{  	$posts = Cartlist::find()->all();
+		$loguser =  Yii::$app->user->identity->username;
+		return $this->render('cartpage',['posts' => $posts]);
+//		 return $this->render('cartpage',['loguser' => $loguser]);
+		// return $this->render('success');
+	}
+
+	public function actionDelete_cart($id)
+	{
+		 $posts = Cartlist::findOne($id)->delete();
+         	 if ($posts) {
+                  Yii::$app->getSession()->setFlash('message', 'Item removed');
+                  return $this->redirect(['cart']);
+	  		}
+	}
 }

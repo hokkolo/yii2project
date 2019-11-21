@@ -66,7 +66,7 @@ AppAsset::register($this);
 	    ['label' => 'Billing', 'url' => ['/site/billing'],'visible' => $user == 'employee'],
 
 	    ['label' => 'Store', 'url' => ['/site/custstore'],'visible' => $user == 'customer'],
-	    ['label' => 'Cart', 'url' => ['/site/billing'],'visible' => $user == 'customer'],
+	    ['label' => 'Cart', 'url' => ['/site/cart'],'visible' => $user == 'customer'],
 	    ['label' => 'History', 'url' => ['/site/billing'],'visible' => $user == 'customer'],
 
             Yii::$app->user->isGuest ? (
